@@ -8,7 +8,7 @@ GO
 
 CREATE TABLE Category (
 	id INT PRIMARY KEY IDENTITY,
-	name VARCHAR(50),
+	name NVARCHAR(50),
 	description VARCHAR(50)
 )
 
@@ -79,8 +79,8 @@ CREATE TABLE Bill(
 GO
 
 CREATE TABLE BillDetail(
-	idBill VARCHAR FOREIGN KEY REFERENCES Bill(id),
-	idProduct VARCHAR(20) FOREIGN KEY REFERENCES Product(barcode),
+	idBill VARCHAR FOREIGN KEY REFERENCES Bill(id) NOT NULL,
+	idProduct VARCHAR(20) FOREIGN KEY REFERENCES Product(barcode) NOT NULL,
 	quantity INT,
 	price FLOAT,
 	intoMoney FLOAT
@@ -89,7 +89,7 @@ CREATE TABLE BillDetail(
 GO
 
 CREATE TABLE Import (
-	id VARCHAR(50),
+	id VARCHAR(50) PRIMARY KEY,
 	idEmployee VARCHAR(20) FOREIGN KEY REFERENCES Employee(id),
 	importDate DATE,
 	idSupplier INT FOREIGN KEY REFERENCES Supplier(id),
@@ -97,10 +97,11 @@ CREATE TABLE Import (
 	note TEXT
 )
 
+GO
 
-CREATE TABLE tblImportDetail (
-	idImport VARCHAR(50) FOREIGN KEY REFERENCES Import(id),
-	barcode VARCHAR(20) FOREIGN KEY REFERENCES Product(barcode),
+CREATE TABLE ImportDetail (
+	idImport VARCHAR(50) FOREIGN KEY REFERENCES Import(id) NOT NULL,
+	barcode VARCHAR(20) FOREIGN KEY REFERENCES Product(barcode) NOT NULL,
 	quantity INT,
 	price FLOAT,
 	totalPrice FLOAT 
