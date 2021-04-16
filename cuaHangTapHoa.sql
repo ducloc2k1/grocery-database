@@ -8,7 +8,8 @@ GO
 
 CREATE TABLE Category (
 	id INT PRIMARY KEY IDENTITY,
-	name VARCHAR(50)
+	name VARCHAR(50),
+	description VARCHAR(50)
 )
 
 GO
